@@ -1,0 +1,79 @@
+/*
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map.
+ */
+.navbar{
+    background-color: #D8CCC7;
+}
+.row {
+    flex-wrap: nowrap;
+}
+
+.container {
+    /* display: flex;
+    flex-direction: row;
+    justify-content: flex-end;  */
+    /* background-color: lightblue; */
+    margin-top : 10px;
+    height: 100%;
+}
+.charts {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 10px; 
+    /* margin-top: 10px; */
+    width:100%;
+}
+.chart {
+    border-radius: 10px;
+    /* background-color: lightcoral; */
+    height: 30%;
+    /* width: 50%; */
+    margin-top : 10px;
+}
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    /* overflow-x: auto; */
+    /* overflow-y: auto; */
+
+}
+.btn-primary {
+    align-self: flex-end;
+}
+/* .modal-xxl .modal-dialog {
+    min-width: 60%;
+} */
+/* .modal-content{
+    max-height: 90vh;
+} */
+.map-and-chart{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.map-in-modal{
+    /* flex: 1; */
+    border-radius: 10px;
+    height: 500px;
+}
+hr {
+    border: none;
+    height: 5px;
+    background-color: black;
+}

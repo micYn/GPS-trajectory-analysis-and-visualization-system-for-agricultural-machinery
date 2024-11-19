@@ -1,0 +1,229 @@
+body {
+    background: linear-gradient(135deg, #F5F5DC 0%, #EAE3D2 100%);
+    /* background-color: #F5F5DC; */
+    font-family: 'Roboto', sans-serif;
+    /* padding-top: 70px; */
+}
+h1, h2, h3, h4, h5, h6 {
+    /* font-family: serif; Use a more elegant font for headings */
+    /* font-size: 1.25rem; */
+    color: #444;
+}
+
+p {
+    /* font-weight: 400; */
+    color: #666; /* Lighter text color for body content */
+}
+.modal-content {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header, .modal-body {
+    padding: 20px;
+}
+.navbar{
+    background-color: #D8CCC7;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 100px 40px; /* Some padding to give the navbar elements room */
+}
+.navbar {
+    /* background-image: url('https://images.pexels.com/photos/7931188/pexels-photo-7931188.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* height: 150px; */
+    position: relative;
+}
+.navbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1; /* Place it below the text */
+}
+.navbar-brand {
+    position: relative;
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 1px; /* Adds space between letters for a refined look */
+    color: black;
+    z-index: 2;
+}
+.navbar-brand br {
+    margin-bottom: 5px;
+}
+.navbar-brand:hover {
+    color: white; /* Ensures the color remains white on hover */
+    text-decoration: none; /* Prevents any underlining */
+}
+/* .navbar-brand span {
+    font-size: 1rem;
+    color: #555; 
+} */
+/* .navbar a:hover {
+    text-decoration: underline;
+    color: #000; /* Darken the text color on hover 
+} 
+*/
+.btn-primary {
+    background-color: #A47E6D; /* Softer accent color */
+    border: none;
+    /* padding: 10px 20px; */
+    /* border-radius: 5px; */
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #8A6454; /* Darken on hover */
+}
+input.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    transition: border-color 0.3s ease;
+}
+
+input.form-control:focus {
+    border-color: #A47E6D; /* Matching color on focus */
+    box-shadow: 0 0 5px rgba(164, 126, 109, 0.5);
+}
+
+.btn-outline-secondary {
+    color: #A47E6D;
+    border-color: #A47E6D;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #A47E6D;
+    color: #fff;
+}
+.hide{
+    display: none;
+}
+.error{
+    background-color: orangered;
+    color: #fff;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+.pending{
+    background-color: grey;
+    color: #000;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+.success{
+    background-color: green;
+    color: #000;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+}
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.fieldset-spacing {
+    margin-right: 15px;
+}
+
+.form-inline fieldset {
+    margin-bottom: 20px;
+}
+
+
+.charts-container {
+    display: flex; /* 使用 Flexbox 排列子項目 */
+    align-items: flex-start; /* 垂直對齊 */
+}
+
+.checkbox-container {
+    flex: 1; /* 占用剩餘空間的比例 */
+    margin-right: 20px; /* 選擇項目和圖表之間的距離 */
+}
+
+.charts {
+    flex: 3; /* 占用剩餘空間的比例 */
+}
+
+.chart-container {
+    margin-bottom: 20px; /* 圖表間距 */
+}
+
+.chart {
+    max-width: 100%; /* 圖表自適應容器寬度 */
+}
+input.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    transition: border-color 0.3s ease;
+}
+
+input.form-control:focus {
+    border-color: #A47E6D; /* Matching color on focus */
+    box-shadow: 0 0 5px rgba(164, 126, 109, 0.5);
+}
+
+.btn-outline-secondary {
+    color: #A47E6D;
+    border-color: #A47E6D;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #A47E6D;
+    color: #fff;
+}
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+}
+
+.table th, .table td {
+    padding: 12px;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #ddd; /* Adds a subtle border */
+}
+#histogram-section {
+    display: flex;
+    align-items: flex-start; /* 與上面的複選框在垂直方向上對齊 */
+    gap: 20px; /* 按鈕和圖表之間的距離 */
+}
+
+#histogram-buttons {
+    display: flex;
+    flex-direction: column;
+  
+    margin-left: -20px; /* 調整此值以控制按鈕向左移動的距離 */
+    align-items: flex-start; /* 將按鈕向左對齊 */
+}
+
+#histogram-container {
+    flex: 1; /* 使圖表容器佔滿剩餘空間 */
+    display: flex;
+    justify-content: center; /* 使圖表居中顯示 */
+}

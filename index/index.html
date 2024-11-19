@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中山專題製作2024</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/2.0.0/css/select.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+            integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/2.0.0/js/dataTables.select.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/2.0.0/js/select.dataTables.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    
+    <!-- <style>
+        body {
+            background-color: #F5F5DC;
+        }
+        .navbar {
+            background-color: #D8CCC7;
+        }
+        .row {
+            flex-wrap: nowrap;
+        }
+        #map {
+            border-radius: 10px;
+            height: 100vh;
+            width: 100%;
+        }
+        .map-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin-top: 10px;
+            height: 100%;
+        }
+        .charts-container {
+            display: flex;
+        }
+        .checkbox-container {
+            margin-right: 20px;
+            width: 250px; /* 設定checkbox區域的寬度 */
+        }
+        .charts {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-right: 10px;
+        }
+        .chart {
+            border-radius: 10px;
+            height: 400px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .card-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .btn-primary {
+            align-self: flex-end;
+        }
+        .map-and-chart {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .map-in-modal {
+            border-radius: 10px;
+            height: 500px;
+        }
+        hr {
+            border: none;
+            height: 5px;
+            background-color: black;
+        }
+        #histogram-section {
+            display: flex;
+            align-items: flex-start; /* 與上面的複選框在垂直方向上對齊 */
+            gap: 20px; /* 按鈕和圖表之間的距離 */
+        }
+
+        #histogram-container {
+            flex: 1; /* 使圖表容器佔滿剩餘空間 */
+            display: flex;
+            justify-content: center; /* 使圖表居中顯示 */
+        }
+        .dropdown-adjust {
+        margin-left: -250px; /* 調整數值來決定左移距離 */
+    }
+    .adjust-left {
+        margin-left: -200px; /* 根據需求調整左移距離 */
+    }
+
+    </style> -->
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-center text-center">
+            <a href="#" class="navbar-brand">農機GPS軌跡分析與視覺化系統 <br> GPS Trajectory Analysis and Visualization System for Agricultural Machinery</a>
+            <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav ms-auto">
+                     <li class="navbar-item">
+                        <button class="btn btn-default" type="button"  data-bs-toggle="modal" data-bs-target="#說明modal" id="網站說明按鈕">網站說明</button>
+                    </li>
+                </ul>
+            </div> -->
+        </div> 
+    </nav>
+    <br>
+    <!-- <h1 class="text-center">Download Trajectory</h1> -->
+     <div class="modal fade" id="accesskeyModal" data-bs-backdrop="static">
+        <div class="modal-dialog modal-l">
+          <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Enter password</h5>
+            </div>
+            <div class="modal-body">
+                <div id="submit-msg"></div>
+                <form id="識別碼表單">
+                    <input type="password" class="mr-2" id="識別碼" autocomplete="off" />
+                    <input type="submit" class="btn btn-dark" id="submitButton" value="Submit" />
+                </form>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="card-container">
+        <div class="card w-75 rounded mt-4 mb-4 mx-auto" id="download-card">
+            <div class="card-header justify-content-center">
+                <h5>Download Trajectory</h5> 
+                <br>
+            </div>
+            <div class="card-body">
+                <br>
+                <form id="dateForm" class="d-inline-flex justify-content-center align-items-center flex-wrap">
+                    <fieldset class="form-inline form-group fieldset-spacing">
+                        <legend>From</legend>
+                        <div class="input-group">
+                            <input type="text" id="fromDate" name="fromDate" class="form-control datepicker" required>
+                            <button class="btn btn-outline-secondary" type="button" id="openFromDate">
+                                <i class="fas fa-calendar"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+    
+                    <fieldset class="form-inline form-group fieldset-spacing">
+                        <legend>To</legend>
+                        <div class="input-group">
+                            <input type="text" id="toDate" name="toDate" class="form-control datepicker" required>
+                            <button class="btn btn-outline-secondary" type="button" id="openToDate">
+                                <i class="fas fa-calendar"></i>
+                            </button>
+                        </div>  
+                    </fieldset>
+    
+                    <fieldset class="form-inline form-group fieldset-spacing">
+                        <legend>Password</legend>
+                        <label for="識別碼2"></label>
+                        <input type="password" id="識別碼2" name="農機識別碼" class="form-control" required>
+                    </fieldset>
+    
+                    <div class="btn-container" style="margin-left: 30px;"></div>
+                        <button class="btn btn-primary" id="download-button" type="submit">Download</button>
+                        <!-- <button type="button" class="btn btn-Secondary" id="remove-date-btn">Clear</button> -->
+                    </div>
+                </form>
+                <br>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="card-container">
+        <div class="card w-75 rounded mt-4 mb-4 mx-auto">
+            <div class="tab-content">
+                <div class="card-header justify-content-center">
+                    <h5 class="card-title">Trajectory record</h5>
+                </div>
+                <div class="card-body tab-pane fade show active" id="tmp" role="tabpanel" aria-labelledby="work-record-tab">               
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover" id="work-record">
+                            <thead class="table-light">
+                                <tr><th>No.</th><th>Start time</th><th>End time</th><th>Time interval(hr:min)</th><th>Raw points</th><th>Duplicate points</th><th>Lost points</th><th>Outlier points</th><th>Total points after repair</th></tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container mt-5">
+        <h1 class="text-center">Trajectory Info</h1>
+        <div class="charts-container">
+            <div class="checkbox-container">
+                <!-- 選擇比較項目和圖表類型 -->
+                <div class="mb-3">
+                    <label class="form-label">Point & Time:</label>
+                    <div id="radioComparison" class="form-check">
+                        
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonRatio" value="ratio" required>
+                        <label class="form-check-label" for="comparisonRatio">Points Per Minute</label><br>
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonTime" value="time" required>
+                        <label class="form-check-label" for="comparisonTime">Time(Minute)</label><br>
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonDistance" value="distance" required>
+                        <label class="form-check-label" for="comparisonDistance">Number Of Points</label><br>
+                        <!--add3-->
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonSpeed" value="speed" required>
+                        <label class="form-check-label" for="comparisonSpeed">Speed</label>
+                    </div>
+                </div>
+        
+                <!-- 選擇圖表類型 -->
+                <div class="mb-3">
+                    <label class="form-label">Chart Type:</label>
+                    <div id="radioChartType" class="form-check">
+                        <input class="form-check-input" type="radio" name="chartType" id="chartTypeBar" value="bar" checked required>
+                        <label class="form-check-label" for="chartTypeBar">Bar Chart</label><br>
+                        <input class="form-check-input" type="radio" name="chartType" id="chartTypeLine" value="line" required>
+                        <label class="form-check-label" for="chartTypeLine">Line Chart</label>
+                    </div>
+                </div>
+        
+                <!-- 選擇數據 -->
+                <div class="mb-3">
+                    <label class="form-label">Trajectory:</label>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Trajectory
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="checkboxData">
+                            <!-- 選項將由 JavaScript 動態生成 -->
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- 新增資料集按鈕 -->
+                <button id="addDatasetBtn" class="btn btn-primary mb-3">Add Trajectory To Dataset</button>
+        
+                <!-- 資料集顯示 -->
+                <div id="checkboxDatasets" class="mb-3">
+                    <!-- 資料集選項將由 JavaScript 動態添加 -->
+                </div>
+            </div>
+        
+            <!-- 圖表顯示區域 -->
+            <div class="charts">
+                <div class="chart-container">
+                    <canvas id="workChart" class="chart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <canvas id="averageChart" class="chart"></canvas>
+                </div>
+                
+            </div>
+        </div>
+        
+           
+            
+        <h2 class="text-center">Speed Distribution of One Trajectory</h2>
+        <div id="histogram-section">
+            <div id="histogram-dropdown" class="dropdown-adjust">
+                <!-- 下拉式選單將由 JavaScript 動態添加 -->
+            </div>
+            <div id="histogram-container">
+                <canvas id="histogramChart" class="chart"></canvas>
+            </div>
+        </div>
+        <div class="mb-3">
+            <h2 class="text-center">Replay For Trajectory</h2>
+        </div>
+        
+        <button id="ToNextPage" class="btn btn-primary mb-3">Replay</button>
+        <div id="dropdownContainer">
+            <!-- 下拉式選單將由 JavaScript 動態添加 -->
+        </div>
+    </div>
+    
+
+    <script src="index.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#fromDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+    
+            $('#toDate').datepicker({
+                format: 'mm/dd/yyyy',
+                autoclose: true
+            });
+        });
+        document.getElementById('openFromDate').addEventListener('click', function() {
+            $('#fromDate').datepicker('show');
+        });
+
+        document.getElementById('openToDate').addEventListener('click', function() {
+            $('#toDate').datepicker('show');
+        });
+    </script>
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+
+            const checkboxContainer = document.getElementById('checkboxData');
+    let checkboxStates = Array(12).fill(false); // 初始化一個陣列來儲存複選框的狀態
+
+    // 函數：保存複選框狀態
+    function saveCheckboxStates() {
+        const checkboxes = checkboxContainer.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox, index) => {
+            checkboxStates[index] = checkbox.checked;
+        });
+    }
+
+    // 函數：加載複選框狀態
+    function loadCheckboxStates() {
+        const checkboxes = checkboxContainer.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach((checkbox, index) => {
+            checkbox.checked = checkboxStates[index];
+        });
+    }
+
+    // 函數：生成或更新複選框
+    function updateCheckboxes() {
+        // 保存目前的狀態
+        saveCheckboxStates();
+    
+        // 清空現有的複選框
+        checkboxContainer.innerHTML = '';
+    
+        // 檢查本地陣列是否有該數據，並生成複選框
+        for (let i = 1; i <= 12; i++) {
+            const data = true; // 模擬已顯示的數據
+    
+            // 如果數據存在，則創建複選框
+            if (data) {
+                const listItem = document.createElement('li');
+                listItem.className = 'dropdown-item';
+
+                const input = document.createElement('input');
+                input.type = 'checkbox';
+                input.className = 'form-check-input';
+                input.value = i - 1;
+                input.id = `data${i}`;
+                input.checked = checkboxStates[i - 1];
+        
+                const label = document.createElement('label');
+                label.className = 'form-check-label ms-2';  // 加上間距
+                label.htmlFor = `data${i}`;
+                label.textContent = `Data ${i}`;
+        
+                // 將 input 和 label 添加到 listItem 中
+                listItem.appendChild(input);
+                listItem.appendChild(label);
+
+                // 將 listItem 添加到下拉選單中
+                checkboxContainer.appendChild(listItem);
+            }
+        }
+    
+        // 恢復複選框狀態
+        loadCheckboxStates();
+
+        // 當複選框變化時，更新圖表
+        $('#checkboxData input[type="checkbox"]').change(updateChart);
+    }
+
+    // 初次生成複選框
+    updateCheckboxes();
+
+    // 設置一個更長的間隔來檢查陣列是否變化
+    setInterval(function() {
+        updateCheckboxes();
+    }, 3000);  // 每 3 秒檢查一次
+
+
+
+
+            // localStorage.clear();
+            var ctx = document.getElementById('workChart').getContext('2d');
+            var avgCtx = document.getElementById('averageChart').getContext('2d');
+            var workChart, averageChart;
+            var coordinatesData = [3122, 4062, 6039, 7241, 5309, 4192, 3868, 2651, 3427, 3762, 2201, 5156];
+            var timeData = ["0:52", "1:08", "1:42", "3:44", "1:30", "2:10", "1:05", "0:45", "0:58", "1:04", "0:38", "1:37"];    
+
+            //add1
+            var SpeedData = [0.84 , 0.77 , 0.62 , 2.29 , 0.87 , 1.30 , 0.74 , 0.81 , 0.32 , 0.45 , 0.63 , 0.42]
+            var timeDataInSeconds = timeData.map(function(time) {
+                var parts = time.split(':');
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            });
+    
+            var datasets = {};
+            var datasetCounter = 0;
+    
+            // 記錄選擇的數據
+            var selectedDataIndices = [];
+    
+            // 更新圖表函數
+            function updateChart() {
+                var chartType = $('#radioChartType input[type=radio]:checked').val();
+                var comparisonType = $('#radioComparison input[type=radio]:checked').val();
+                var selectedIndices = $('#checkboxData input[type=checkbox]:checked').map(function() {
+                    return parseInt($(this).val());
+                }).get();
+    
+                selectedDataIndices = selectedIndices;
+    
+                var data = [];
+                var labels = [];
+                selectedIndices.forEach(function(index) {
+                    if (comparisonType === 'ratio') {
+                        data.push(coordinatesData[index] / timeDataInSeconds[index]);
+                        labels.push(index + 1);
+                    } else if (comparisonType === 'time') {
+                        data.push(timeDataInSeconds[index]);
+                        labels.push(index + 1);
+                    } else if (comparisonType === 'distance') {
+                        data.push(coordinatesData[index]);
+                        labels.push(index + 1);
+                    }else if (comparisonType === 'speed') {
+                        data.push(SpeedData[index]);
+                        labels.push(index + 1);
+                    }
+                });
+    
+                if (workChart) {
+                    workChart.destroy();
+                }
+                if(comparisonType === 'time'){
+                    workChart = new Chart(ctx, {
+                        type: chartType,
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                                data: data,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Trajectory ID'
+                                }
+                            },
+                                y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Minute'
+                                }
+                            }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 18
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(tooltipItem) {
+                                            return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+                    });
+                    //add2
+                }else  if (comparisonType === 'speed'){
+                    workChart = new Chart(ctx, {
+                        type: chartType,
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                                data: data,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Trajectory ID'
+                                }
+                            },
+                                y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Speed(m/s)'
+                                }
+                            }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 18
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(tooltipItem) {
+                                            return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+                    });
+                }else{
+                    workChart = new Chart(ctx, {
+                        type: chartType,
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                                data: data,
+                                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                borderColor: 'rgba(54, 162, 235, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Trajectory ID'
+                                }
+                            },
+                                y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Points'
+                                }
+                            }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 18
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(tooltipItem) {
+                                            return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                        }
+                                    }
+                                }
+                            }
+                            
+                        }
+                    });
+                }   
+                updateAverageChart();
+            } 
+            
+            // 更新平均圖表函數
+            function updateAverageChart() {
+                var selectedDatasets = $('#checkboxDatasets input[type=checkbox]:checked').map(function() {
+                    return $(this).val();
+                }).get();
+    
+                if (selectedDatasets.length > 0) {
+                    var avgData = [];
+                    var avgLabels = [];
+    
+                    selectedDatasets.forEach(function(datasetName) {
+                        var dataset = datasets[datasetName];
+                        if (dataset) {
+                            var totalRatio = dataset.data.reduce((sum, value) => sum + value, 0);
+                            var averageRatio = totalRatio / dataset.data.length;
+    
+                            avgData.push(averageRatio);
+                            avgLabels.push(datasetName);
+                        }
+                    });
+    
+                    if (averageChart) {
+                        averageChart.destroy();
+                    }
+    
+                    averageChart = new Chart(avgCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: avgLabels,
+                            datasets: [{
+                                label: 'Points per minute',
+                                data: avgData,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        font: {
+                                            size: 16
+                                        }
+                                    }
+                                },
+                                x: {
+                                    ticks: {
+                                        font: {
+                                            size: 16
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 18
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(tooltipItem) {
+                                            var datasetName = tooltipItem.dataset.label;
+                                            var index = tooltipItem.dataIndex;
+                                            var label = avgLabels[index];
+                                            return datasetName + ': ' + label;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+    
+                    // 設定 averageChart 點擊事件
+                    avgCtx.canvas.addEventListener('click', function(event) {
+                        var activePoints = averageChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                        if (activePoints.length > 0) {
+                            var datasetIndex = activePoints[0].datasetIndex;
+                            var index = activePoints[0].index;
+                            var datasetName = avgLabels[index];
+                            var dataset = datasets[datasetName];
+    
+                            if (dataset) {
+                                // 更新 workChart 顯示對應資料集
+                                var data = [];
+                                var labels = [];
+                                dataset.indices.forEach(function(index) {
+                                    if ($('#radioComparison input[type=radio]:checked').val() === 'ratio') {
+                                        data.push(coordinatesData[index] / timeDataInSeconds[index]);
+                                    } else if ($('#radioComparison input[type=radio]:checked').val() === 'time') {
+                                        data.push(timeDataInSeconds[index]);
+                                    } else if ($('#radioComparison input[type=radio]:checked').val() === 'distance') {
+                                        data.push(coordinatesData[index]);
+                                    }
+                                    labels.push(index + 1);
+                                });
+    
+                                if (workChart) {
+                                    workChart.destroy();
+                                }
+    
+                                workChart = new Chart(ctx, {
+                                    type: $('#radioChartType input[type=radio]:checked').val(),
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                                            data: data,
+                                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                ticks: {
+                                                    font: {
+                                                        size: 16
+                                                    }
+                                                }
+                                            },
+                                            x: {
+                                                ticks: {
+                                                    font: {
+                                                        size: 16
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        plugins: {
+                                            legend: {
+                                                labels: {
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                }
+                                            },
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: function(tooltipItem) {
+                                                        return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+    
+            // 新增到資料集函數
+            function addToDataset() {
+                // 檢查是否至少有一個 checkbox 被選中
+                saveCheckboxStates();
+                if (checkboxStates.some(state => state === true)) {
+                    var datasetName = 'Dataset ' + (++datasetCounter);
+                    var dataset = {
+                        name: datasetName,
+                        indices: selectedDataIndices,
+                        data: selectedDataIndices.map(function(index) {
+                            return coordinatesData[index] / timeDataInSeconds[index];
+                        })
+                    };
+                    datasets[datasetName] = dataset;
+
+                    $('#checkboxDatasets').append(
+                        '<div class="form-check">' +
+                            '<input class="form-check-input" type="checkbox" value="' + datasetName + '" id="dataset' + datasetCounter + '">' +
+                            '<label class="form-check-label" for="dataset' + datasetCounter + '">' + datasetName + '</label>' +
+                        '</div>'
+                    );
+                    updateChart();
+                } else {
+                    // 如果沒有任何 checkbox 被選中，顯示警告
+                    alert('Please select at least one checkbox before adding a dataset.');
+                }
+            }
+            
+            // 勾選或取消勾選數據時更新圖表
+            $('#checkboxData input[type=checkbox]').change(updateChart);
+            // 勾選或取消勾選資料集時更新圖表
+            $('#checkboxDatasets').on('change', 'input[type=checkbox]', updateAverageChart);
+            // 圖表類型勾選事件
+            $('#radioChartType input[type=radio]').change(updateChart);
+            // 比較項目勾選事件
+            $('#radioComparison input[type=radio]').change(updateChart);
+            // 資料集按鈕事件
+            $('#addDatasetBtn').click(addToDataset);
+        });
+    </script>  
+    
+    
+    <!-- 直方圖 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const histogramDropdownContainer = document.getElementById('histogram-dropdown');
+            const histogramChart = document.getElementById('histogramChart').getContext('2d');
+
+            // 創建下拉式選單
+            const select = document.createElement('select');
+            select.className = 'form-select';
+            select.style.width = 'auto';
+            
+            const defaultOption = document.createElement('option');
+            defaultOption.textContent = 'Trajectory';
+            defaultOption.disabled = true;
+            defaultOption.selected = true;
+            select.appendChild(defaultOption);
+
+            function ensureLocalStorageKeys() {
+            // 儲存當前選中的值
+            const currentSelection = select.value;
+
+            select.innerHTML = '';
+            select.appendChild(defaultOption);
+            for (let i = 1; i <= 12; i++) {
+                const data = revealed.includes(i);
+                if (data) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `${i}`;
+                    select.appendChild(option);
+                }
+            }
+
+            // 恢復使用者的選擇
+            if (currentSelection) {
+                select.value = currentSelection;
+            }
+        }
+        setInterval(ensureLocalStorageKeys, 1000);
+
+            select.addEventListener('change', function() {
+                fetchHistogramData(this.value);
+            });
+
+            histogramDropdownContainer.appendChild(select);
+
+            // 函數：讀取文本文件並生成直方圖
+            function fetchHistogramData(fileNumber) {
+                fetch(`hist${fileNumber}.txt`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        const distances = data.split('\n').map(line => parseFloat(line)).filter(value => !isNaN(value));
+                        console.log('Distances:', distances); // 用於調試
+                        drawHistogram(distances);
+                    })
+                    .catch(error => console.error('Error fetching histogram data:', error));
+            }
+
+            // 函數：繪製直方圖
+            function drawHistogram(data) {
+                if (window.histogramChartInstance) {
+                    window.histogramChartInstance.destroy();
+                }
+
+                const binSize = 0.2;
+                const maxDistance = 3;
+                const binsCount = Math.ceil(maxDistance / binSize);
+                const counts = new Array(binsCount).fill(0);
+
+                data.forEach(value => {
+                    if (value >= 0 && value <= maxDistance) {
+                        const binIndex = Math.floor(value / binSize);
+                        counts[binIndex]++;
+                    }
+                });
+
+                const labels = Array.from({ length: binsCount }, (_, i) => `${(i * binSize).toFixed(1)} - ${(i * binSize + binSize).toFixed(1)}`);
+
+                window.histogramChartInstance = new Chart(histogramChart, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Points',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Speed (m/s)'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Points'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+<!-- replay -->
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownContainer = document.getElementById('dropdownContainer');
+        const replayButton = document.getElementById('ToNextPage');
+
+        // 創建下拉式選單
+        const select = document.createElement('select');
+        select.className = 'form-select mb-3';  // 添加Bootstrap樣式
+        select.style.width = 'auto';  // 設置寬度根據內容自動調整
+
+        const defaultOption = document.createElement('option');
+        defaultOption.textContent = 'Trajectory';
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        select.appendChild(defaultOption);
+
+        function ensureLocalStorageKeys() {
+            // 儲存當前選中的值
+            const currentSelection = select.value;
+
+            select.innerHTML = '';
+            select.appendChild(defaultOption);
+            for (let i = 1; i <= 12; i++) {
+                const data = revealed.includes(i);
+                if (data) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = `${i}`;
+                    select.appendChild(option);
+                }
+            }
+
+            // 恢復使用者的選擇
+            if (currentSelection) {
+                select.value = currentSelection;
+            }
+        }
+        setInterval(ensureLocalStorageKeys, 1000);
+
+        // 當選擇變化時執行相關動作
+        select.addEventListener('change', function() {
+            const selectedData = this.value;
+            console.log('Selected Data:', selectedData); // 可以根據選擇執行相應操作
+        });
+
+        dropdownContainer.appendChild(select);
+
+        // Replay 按鈕跳轉頁面
+        replayButton.addEventListener('click', function() {
+            const selectedData = select.value;
+            if (selectedData !== 'Trajectory') {
+                const ar = JSON.stringify([selectedData - 1]);
+                console.log('Stored Array:', ar);
+                localStorage.setItem('0', ar);
+                // 打開新頁面
+                window.open('../routeDisplay/routeDisplay.html', '_blank');
+            } else {
+                alert('Please select data before proceeding.');
+                
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>
+</body>
+
+</html>

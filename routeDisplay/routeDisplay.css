@@ -1,0 +1,254 @@
+/*
+ * Optional: Makes the sample page fill the window.
+ */
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #F5F5DC;
+}
+/*
+ * Whole web page background color
+ */
+.navbar {
+    background-color: #D8CCC7;
+}
+/*
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map.
+ */
+#map-container {
+    position: relative;
+    height: 80vh;
+    width: 100%;
+}
+#map {
+    height: 100%;
+    width: 100%;
+}
+/*
+ * Style for the dot marker
+ */
+.dot-marker {
+    width: 8px;
+    height: 8px;
+    background-color: magenta;
+    border-radius: 50%;
+    border: 2px solid blue;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    
+    /* Ensure that the center of the dot aligns with the GPS point */
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+/*
+ * Progress Bar
+ */
+/* Style for the progress bar container */
+.progress-container {
+    width: 92%; /* You can adjust this value as needed */
+    max-width: 98%; /* Set a max width for larger screens */
+    margin: 1%; /* Center the progress bar */
+    position: relative;
+}
+/* Style for the range input (progress bar) */
+#progressBar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%; /* Full width of the container */
+    height: 10px; /* Adjust height of the progress bar */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    background-color: #cccccc;
+    height: 10px;
+    border-radius: 10px;
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+/* Customize the thumb (slider button) */
+#progressBar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 20px;
+    /* background-color: rgb(212, 79, 106); */
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+#progressBar::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background-color: crimson;
+    border-radius: 50%;
+    cursor: pointer;
+}
+/* Hover and active styles */
+#progressBar:hover::-webkit-slider-thumb {
+    background-color: crimson;
+}
+#progressBar:active::-webkit-slider-thumb {
+    background-color: crimson;
+}
+
+/* Style the tooltip */
+.tooltip {
+    font-family: "Consolas"; /* Set the font family */
+    position: absolute;
+    top: -40px;  /* Adjust this based on the height of your progress bar */
+    left: 0;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 12px;
+    display: none; /* Initially hidden */
+    white-space: nowrap;
+}
+
+.tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.progress-container, .progress-controller {
+    position: absolute;
+    /* z-index: 999; Ensure it's above the map */
+    bottom: 10px; /* For positioning at the bottom */
+    background: rgba(255, 255, 255, 0.85); /* Transparent background */
+    padding: 5px;
+    border-radius: 5px;
+}
+.progress-container {
+    bottom: 65px; /* Offset it slightly from the progress bar */
+}
+
+#infoPanel, #speedColorTable {
+    position: absolute;
+    /* z-index: 999; Ensure it's above the map */
+    padding: 5px;
+    border-radius: 5px;
+}
+#infoPanel {
+    bottom: 100px; /* Offset it slightly from the progress bar */
+}
+#speedColorTable {
+    bottom: 170px; /* Offset it slightly from the progress bar */
+}
+
+.progress-controller {
+    font-family: "Consolas"; /* Set the font family */
+    font-size: 20px; /* Set the font size */
+    margin: 1%; /* Center the progress bar */
+}
+#playPauseButton {
+    font-family: "Poppins"; /* Set the font family */
+    font-size: 20px; /* Set the font size */
+    font-weight: bold; /*Make the text bold*/
+
+    background-color: #e7e7e7;
+    border: 1px solid #000000;
+    border-radius: 15%; /* Make the button circular */
+    height: 35px;
+    width: 35px;
+    cursor: pointer; /* Cursor changes to pointer on hover */
+}
+#playPauseButton:hover {
+    background-color: #ffffff;
+    transform: scale(1.03); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+}
+#playPauseButton:active {
+    transform: scale(0.97); /* Slightly shrink on click */
+}
+#replaySpeed {
+    font-family: "Consolas"; /* Set the font family */
+    font-size: 18px; /* Set the font size */
+    font-weight: bold; /*Make the text bold*/
+    /* font-style: italic; Make the text italic */
+}
+.theDarkBlue {
+    color: #2020ff; /* Change this to the color you prefer */
+}
+.theLightkBlue {
+    color: #ddffff; /* Change this to the color you prefer */
+}
+
+/*
+ * Info: lat, lng, time, avg speed, ins speed
+ */
+#infoPanel {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    /* justify-content: space-around; */
+    margin: 1%;
+}
+.info-item {
+    font-family: "Consolas"; /* Set the font family */
+    /* font-weight: bold; Make the text bold */
+    /* font-style: italic; Make the text italic */
+    font-size: 20px; /* Set the font size */
+    height: 1%;
+
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: #8dd5ff;
+}
+.avgSpeed-item {
+    font-family: "Consolas"; /* Set the font family */
+    font-size: 20px; /* Set the font size */
+    height: 1%;
+
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: red;
+}
+.insSpeed-item {
+    font-family: "Consolas"; /* Set the font family */
+    font-size: 20px; /* Set the font size */
+    height: 1%;
+
+    margin: 5px;
+    padding: 5px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    background-color: red;
+}
+/*
+ * Speed color table
+ */
+#speedColorTable {
+    font-family: "Consolas"; /* Set the font family */
+    font-size: 20px; /* Set the font size */
+
+    margin: 1%;
+    border-collapse: collapse;
+    width: 130px;
+    border: 2px solid black;
+    padding: px;
+    text-align: center;
+    background-color: #f2f2f2;
+}
+/* Define colors for each row */
+.color-red { background-color: hsl(0, 100%, 50%); color: black; }
+.color-orange { background-color: hsl(30, 100%, 50%); color: black; }
+.color-yellow { background-color: hsl(60, 100%, 50%); color: black; }
+.color-green { background-color: hsl(120, 100%, 50%); color: black; }
+.color-cyan { background-color: hsl(180, 100%, 50%); color: black; }
+.color-blue { background-color: hsl(240, 100%, 50%); color: black; }
+.color-purple { background-color: hsl(270, 100%, 50%); color: black; }
+
+
+

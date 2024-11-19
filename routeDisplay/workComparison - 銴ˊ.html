@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Comparison</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+          crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/2.0.0/css/select.dataTables.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="workComparison.css"> -->
+    <style>
+        body {
+            background-color: #F5F5DC;
+        }
+        .charts-container {
+            display: flex;
+        }
+        .checkbox-container {
+            margin-right: 20px;
+            width: 250px; /* 設定checkbox區域的寬度 */
+        }
+        .charts {
+            flex: 1;
+      
+        }
+        .chart {
+            border-radius: 10px;
+            height: 400px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        
+        
+       
+        #histogram-section {
+            display: flex;
+            align-items: flex-start; /* 與上面的複選框在垂直方向上對齊 */
+            gap: 20px; /* 按鈕和圖表之間的距離 */
+        }
+
+        #histogram-buttons {
+            display: flex;
+            flex-direction: column;
+          
+            margin-left: -20px; /* 調整此值以控制按鈕向左移動的距離 */
+            align-items: flex-start; /* 將按鈕向左對齊 */
+        }
+
+        #histogram-container {
+            flex: 1; /* 使圖表容器佔滿剩餘空間 */
+            display: flex;
+            justify-content: center; /* 使圖表居中顯示 */
+        }
+
+        
+    </style>
+</head>
+<body>
+    
+    
+    <div class="container mt-5">
+        <h1 class="text-center">Work Comparison</h1>
+
+        <div class="charts-container">
+            <!-- 選擇比較項目和圖表類型 -->
+            <div class="checkbox-container">
+                <!-- 選擇比較項目 -->
+                <div class="mb-3">
+                    <label class="form-label">Select Comparison:</label>
+                    <div id="radioComparison" class="form-check">
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonRatio" value="ratio" required>
+                        <label class="form-check-label" for="comparisonRatio">Coordinates per Time Ratio</label><br>
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonTime" value="time" required>
+                        <label class="form-check-label" for="comparisonTime">Time</label><br>
+                        <input class="form-check-input" type="radio" name="comparison" id="comparisonDistance" value="distance" required>
+                        <label class="form-check-label" for="comparisonDistance">Coordinate Points</label>
+                    </div>
+                </div>
+
+                <!-- 選擇圖表類型 -->
+                <div class="mb-3">
+                    <label class="form-label">Select Chart Type:</label>
+                    <div id="radioChartType" class="form-check">
+                        <input class="form-check-input" type="radio" name="chartType" id="chartTypeBar" value="bar" checked required>
+                        <label class="form-check-label" for="chartTypeBar">Bar Chart</label><br>
+                        <input class="form-check-input" type="radio" name="chartType" id="chartTypeLine" value="line" required>
+                        <label class="form-check-label" for="chartTypeLine">Line Chart</label>
+                    </div>
+                </div>
+
+                <!-- 選擇數據 -->
+                <div class="mb-3">
+                    <label class="form-label">Select Data:</label>
+                    <div id="checkboxData" class="form-check">
+                        <input class="form-check-input" type="checkbox" value="0" id="data0" checked>
+                        <label class="form-check-label" for="data0">1</label><br>
+                        <input class="form-check-input" type="checkbox" value="1" id="data1" checked>
+                        <label class="form-check-label" for="data1">2</label><br>
+                        <input class="form-check-input" type="checkbox" value="2" id="data2" checked>
+                        <label class="form-check-label" for="data2">3</label><br>
+                        <input class="form-check-input" type="checkbox" value="3" id="data3" checked>
+                        <label class="form-check-label" for="data3">4</label><br>
+                        <input class="form-check-input" type="checkbox" value="4" id="data4" checked>
+                        <label class="form-check-label" for="data4">5</label><br>
+                        <input class="form-check-input" type="checkbox" value="5" id="data5" checked>
+                        <label class="form-check-label" for="data5">6</label><br>
+                        <input class="form-check-input" type="checkbox" value="6" id="data6" checked>
+                        <label class="form-check-label" for="data6">7</label><br>
+                        <input class="form-check-input" type="checkbox" value="7" id="data7" checked>
+                        <label class="form-check-label" for="data7">8</label><br>
+                        <input class="form-check-input" type="checkbox" value="8" id="data8" checked>
+                        <label class="form-check-label" for="data8">9</label><br>
+                        <input class="form-check-input" type="checkbox" value="9" id="data9" checked>
+                        <label class="form-check-label" for="data9">10</label><br>
+                        <input class="form-check-input" type="checkbox" value="10" id="data10" checked>
+                        <label class="form-check-label" for="data10">11</label><br>
+                        <input class="form-check-input" type="checkbox" value="11" id="data11" checked>
+                        <label class="form-check-label" for="data11">12</label>
+                    </div>
+                </div>
+
+                <!-- 新增資料集按鈕 -->
+                <button id="addDatasetBtn" class="btn btn-primary mb-3">Add to Dataset</button>
+
+                <!-- 資料集顯示 -->
+                <div id="checkboxDatasets" class="mb-3">
+                    <!-- 資料集選項將由 JavaScript 動態添加 -->
+                </div>
+
+                
+
+
+            </div>
+
+            <!-- 圖表顯示區域 -->
+            <div class="charts">
+                <div class="mb-3">
+                    <canvas id="workChart" class="chart"></canvas>
+                </div>
+                <div class="mb-3">
+                    <canvas id="averageChart" class="chart"></canvas>
+                </div>
+                <div class="mb-3">
+                    <h2 class="text-center">Histogram Data Selection</h2>
+                    <div id="histogram-section">
+                        <div id="histogram-buttons">
+                            <!-- 直方圖單選按鈕將由 JavaScript 動態添加 -->
+                        </div>
+                        <div id="histogram-container">
+                            <canvas id="histogramChart" class="chart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <button id="ToNextPage" class="btn btn-primary mb-3">Replay</button>
+                <div id="radioContainer">
+                    <!-- Radio buttons will be generated here -->
+                </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- login -->
+     <script>
+        const recordSize = 12;
+        const workRecord = [
+            ["1", "2023-02-21T10:50:00", "2023-02-21T11:42:53", "0:52", "3122"],
+            ["2", "2023-02-20T14:06:08", "2023-02-20T15:15:00", "1:08", "4062"],
+            ["3", "2023-01-31T12:46:06", "2023-01-31T14:28:31", "1:42", "6039"],
+            ["4", "2022-09-05T13:30:00", "2022-09-05T17:14:59", "3:44", "7241"],
+            ["5", "2023-02-23T09:00:00", "2023-02-23T10:30:00", "1:30", "5309"],
+            ["6", "2022-09-08T14:37:29", "2022-09-08T16:47:38", "2:10", "4192"],
+            ["7", "2023-05-04T17:05:00", "2023-05-04T18:10:00", "1:05", "3868"],
+            ["8", "2023-05-11T12:45:00", "2023-05-11T13:30:00", "0:45", "2651"],
+            ["9", "2023-06-22T10:41:29", "2023-06-22T11:39:35", "0:58", "3427"],
+            ["10", "2023-04-13T09:44:00", "2023-04-13T10:48:57", "1:04", "3762"],
+            ["11", "2023-04-13T08:59:00", "2023-04-13T09:37:00", "0:38", "2201"],
+            ["12", "2023-04-19T12:54:00", "2023-04-19T14:31:00", "1:37", "5156"],
+        ];
+     </script>
+    <script>
+        const authURL = 'https://engpowerapi.azurewebsites.net';
+        const baseURL = 'https://rstpowerapi.azurewebsites.net';
+        function fetchFunction(typedValue, sdt, edt, number) {
+            const authPayload = {
+                "servId": "dtrikhdemo01",
+                "acc": typedValue,
+                "pw": "nsysuec5020ay112pw"
+            };
+            const dataPayload = {
+                "equId": "nsysuec5020ay112",
+                "sdt": sdt,
+                "edt": edt,
+            };
+            return new Promise((resolve, reject) => {
+                let result = 2;
+
+                fetch(`${authURL}/Login/Login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(authPayload)
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        result = 1;
+                        
+                        return response.json();
+                    } else {
+                        result = 2;
+                        resolve(result);
+                    }
+                })
+                .then(data => {
+                    return fetch(`${baseURL}/Equ/GetEquRawList`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${data.access_token}` ,
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(dataPayload)
+                    });
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.json().then(fetchedData => {
+                            localStorage.setItem(number, JSON.stringify(fetchedData));
+                            resolve(result);
+                        });
+                    } else {
+                        result = 3;
+                        resolve(result);
+                    }
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+            });
+        }
+
+        async function fetchUtility(typedValue, sdt, edt, number){
+            const result = await fetchFunction(typedValue, sdt, edt, number);
+            if(number==="1"){
+                const submitMsg = document.getElementById("submit-msg");
+                //const table = $('#work-record').DataTable();
+                if(result===1){
+                    resetSubmitmsg();
+                    submitMsg.classList.add('success');
+                    submitMsg.innerHTML = "Data fetched, welcome!";
+                    setTimeout(function() {
+                        $("#accesskeyModal").modal("hide");
+                        resetSubmitmsg();
+                        
+                    }, 1500);
+                    
+                }
+                else if(result===2){
+                    resetSubmitmsg();
+                    submitMsg.classList.add('error');
+                    submitMsg.innerHTML = "Wrong key";
+                    setTimeout(resetSubmitmsg, 1500);
+                }
+                else{
+                    resetSubmitmsg();
+                    submitMsg.classList.add('error');
+                    submitMsg.innerHTML = "Server error";
+                    setTimeout(resetSubmitmsg, 1500);
+                }
+            }
+            else{
+                if(result===1){
+                    // let therow = table.row(Number(number));
+                    // therow.visible(!therow.visible());
+                    //revealRow("work-record", Number(number));
+                }
+            }
+            return result;
+        }
+        function resetSubmitmsg(){
+            const submitMsg = document.getElementById("submit-msg");
+            let classList = submitMsg.classList;
+            while (classList.length > 0) {
+                classList.remove(classList.item(0));
+            }
+            submitMsg.innerHTML = "";
+        }
+    </script>
+
+    <script>
+        function createRadioButtons() {
+            const radioContainer = document.getElementById('radioContainer');
+            for (let i = 1; i <= 12; i++) {
+                const radioButton = document.createElement('div');
+                radioButton.className = 'form-check';
+                radioButton.innerHTML = `
+                    <input class="form-check-input" type="radio" name="radioGroup" id="radio${i}" value="${i}">
+                    <label class="form-check-label" for="radio${i}">
+                        Option ${i}
+                    </label>
+                `;
+                radioContainer.appendChild(radioButton);
+            }
+        }
+
+        // Function to handle button click
+        function TNP() {
+            const selectedRadio = document.querySelector('input[name="radioGroup"]:checked');
+            if (selectedRadio) {
+                const selectedValue = selectedRadio.value;
+                const ar = JSON.stringify([selectedValue-1]);
+                console.log(ar)
+                localStorage.setItem('0', ar);
+                
+                // console.log(`Selected value: ${selectedValue-1}`);
+            } else {
+                console.log('No radio button selected');
+            }
+            window.open('../routeDisplay/routeDisplay.html', '_blank');
+        }
+        $(document).ready(function(){
+    // 檢查本地儲存，決定是否顯示模態框
+        createRadioButtons();
+        if(localStorage.getItem("status") === null) {
+            // 顯示模態框
+            $('#accesskeyModal').modal('show');
+
+            // 處理識別碼提交事件
+            $('#submitButton').click(function(event) {
+                event.preventDefault(); 
+
+                const userInputField = document.getElementById("識別碼");
+                const typedValue = userInputField.value;
+                userInputField.value = ''; // 清空輸入欄位
+
+                const submitMsg = document.getElementById("submit-msg");
+
+                if(typedValue === ''){
+                    submitMsg.classList.add('error');
+                    submitMsg.innerHTML = "Please enter all fields"; // 顯示錯誤信息
+                    setTimeout(resetSubmitmsg, 2000); // 2秒後清除消息
+                } else{
+                    submitMsg.classList.add('pending');
+                    submitMsg.innerHTML = "Pending..."; // 顯示請求進行中
+
+                    async function loadTheRest(recordSize){
+                        for(let i  = 0; i < recordSize; i++){
+                            if(localStorage.getItem((i+1).toString()) === null){
+                                await fetchUtility(typedValue, workRecord[i][1], workRecord[i][2], (i+1).toString());
+                            }
+                        }
+                    }
+                    async function firstRecordAndpossiblytheRest(){
+                        const result = await fetchUtility(typedValue, "2023-02-21T10:50:00", "2023-02-21T11:42:53", "1");
+                        if(result === 1){
+                            localStorage.setItem("status", "true");
+                            $("#accesskeyModal").modal("hide"); // 成功後隱藏模態框
+                            loadTheRest(recordSize);   
+                        }
+                    }
+                    firstRecordAndpossiblytheRest();
+                }
+            });
+        }
+        else{
+            async function loadTheRest(recordSize){
+                for(let i  = 0; i < recordSize; i++){
+                    if(localStorage.getItem((i+1).toString()) === null){
+                        await fetchUtility(typedValue, workRecord[i][1], workRecord[i][2], (i+1).toString());
+                    }
+                }
+            }
+            loadTheRest(recordSize);
+        }
+        document.getElementById('ToNextPage').addEventListener('click', TNP);
+    });
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/2.0.0/js/dataTables.select.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/2.0.0/js/select.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var ctx = document.getElementById('workChart').getContext('2d');
+            var avgCtx = document.getElementById('averageChart').getContext('2d');
+            var workChart, averageChart;
+            var coordinatesData = [3122, 4062, 6039, 7241, 5309, 4192, 3868, 2651, 3427, 3762, 2201, 5156];
+            var timeData = ["0:52", "1:08", "1:42", "3:44", "1:30", "2:10", "1:05", "0:45", "0:58", "1:04", "0:38", "1:37"];
+            var timeDataInSeconds = timeData.map(function(time) {
+                var parts = time.split(':');
+                return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+            });
+    
+            var datasets = {};
+            var datasetCounter = 0;
+    
+            // 記錄選擇的數據
+            var selectedDataIndices = [];
+    
+            // 更新圖表函數
+            function updateChart() {
+                var chartType = $('#radioChartType input[type=radio]:checked').val();
+                var comparisonType = $('#radioComparison input[type=radio]:checked').val();
+                var selectedIndices = $('#checkboxData input[type=checkbox]:checked').map(function() {
+                    return parseInt($(this).val());
+                }).get();
+    
+                selectedDataIndices = selectedIndices;
+    
+                var data = [];
+                var labels = [];
+                selectedIndices.forEach(function(index) {
+                    if (comparisonType === 'ratio') {
+                        data.push(coordinatesData[index] / timeDataInSeconds[index]);
+                        labels.push(index + 1);
+                    } else if (comparisonType === 'time') {
+                        data.push(timeDataInSeconds[index]);
+                        labels.push(index + 1);
+                    } else if (comparisonType === 'distance') {
+                        data.push(coordinatesData[index]);
+                        labels.push(index + 1);
+                    }
+                });
+    
+                if (workChart) {
+                    workChart.destroy();
+                }
+    
+                workChart = new Chart(ctx, {
+                    type: chartType,
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                            data: data,
+                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                            borderColor: 'rgba(54, 162, 235, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    font: {
+                                        size: 16
+                                    }
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    font: {
+                                        size: 16
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    font: {
+                                        size: 18
+                                    }
+                                }
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(tooltipItem) {
+                                        return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+    
+                updateAverageChart();
+            }
+    
+            // 更新平均圖表函數
+            function updateAverageChart() {
+                var selectedDatasets = $('#checkboxDatasets input[type=checkbox]:checked').map(function() {
+                    return $(this).val();
+                }).get();
+    
+                if (selectedDatasets.length > 0) {
+                    var avgData = [];
+                    var avgLabels = [];
+    
+                    selectedDatasets.forEach(function(datasetName) {
+                        var dataset = datasets[datasetName];
+                        if (dataset) {
+                            var totalRatio = dataset.data.reduce((sum, value) => sum + value, 0);
+                            var averageRatio = totalRatio / dataset.data.length;
+    
+                            avgData.push(averageRatio);
+                            avgLabels.push(datasetName);
+                        }
+                    });
+    
+                    if (averageChart) {
+                        averageChart.destroy();
+                    }
+    
+                    averageChart = new Chart(avgCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: avgLabels,
+                            datasets: [{
+                                label: '每時間座標點數平均值',
+                                data: avgData,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    ticks: {
+                                        font: {
+                                            size: 16
+                                        }
+                                    }
+                                },
+                                x: {
+                                    ticks: {
+                                        font: {
+                                            size: 16
+                                        }
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    labels: {
+                                        font: {
+                                            size: 18
+                                        }
+                                    }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(tooltipItem) {
+                                            var datasetName = tooltipItem.dataset.label;
+                                            var index = tooltipItem.dataIndex;
+                                            var label = avgLabels[index];
+                                            return datasetName + ': ' + label;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+    
+                    // 設定 averageChart 點擊事件
+                    avgCtx.canvas.addEventListener('click', function(event) {
+                        var activePoints = averageChart.getElementsAtEventForMode(event, 'nearest', { intersect: true }, true);
+                        if (activePoints.length > 0) {
+                            var datasetIndex = activePoints[0].datasetIndex;
+                            var index = activePoints[0].index;
+                            var datasetName = avgLabels[index];
+                            var dataset = datasets[datasetName];
+    
+                            if (dataset) {
+                                // 更新 workChart 顯示對應資料集
+                                var data = [];
+                                var labels = [];
+                                dataset.indices.forEach(function(index) {
+                                    if ($('#radioComparison input[type=radio]:checked').val() === 'ratio') {
+                                        data.push(coordinatesData[index] / timeDataInSeconds[index]);
+                                    } else if ($('#radioComparison input[type=radio]:checked').val() === 'time') {
+                                        data.push(timeDataInSeconds[index]);
+                                    } else if ($('#radioComparison input[type=radio]:checked').val() === 'distance') {
+                                        data.push(coordinatesData[index]);
+                                    }
+                                    labels.push(index + 1);
+                                });
+    
+                                if (workChart) {
+                                    workChart.destroy();
+                                }
+    
+                                workChart = new Chart(ctx, {
+                                    type: $('#radioChartType input[type=radio]:checked').val(),
+                                    data: {
+                                        labels: labels,
+                                        datasets: [{
+                                            label: $('#radioComparison input[type=radio]:checked').next('label').text(),
+                                            data: data,
+                                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                            borderColor: 'rgba(54, 162, 235, 1)',
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true,
+                                                ticks: {
+                                                    font: {
+                                                        size: 16
+                                                    }
+                                                }
+                                            },
+                                            x: {
+                                                ticks: {
+                                                    font: {
+                                                        size: 16
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        plugins: {
+                                            legend: {
+                                                labels: {
+                                                    font: {
+                                                        size: 18
+                                                    }
+                                                }
+                                            },
+                                            tooltip: {
+                                                callbacks: {
+                                                    label: function(tooltipItem) {
+                                                        return '項目: ' + tooltipItem.label + ', 值: ' + tooltipItem.raw;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+    
+            // 新增到資料集函數
+            function addToDataset() {
+                var datasetName = '資料集 ' + (++datasetCounter);
+                var dataset = {
+                    name: datasetName,
+                    indices: selectedDataIndices,
+                    data: selectedDataIndices.map(function(index) {
+                        return coordinatesData[index] / timeDataInSeconds[index];
+                    })
+                };
+                datasets[datasetName] = dataset;
+    
+                $('#checkboxDatasets').append(
+                    '<div class="form-check">' +
+                        '<input class="form-check-input" type="checkbox" value="' + datasetName + '" id="dataset' + datasetCounter + '">' +
+                        '<label class="form-check-label" for="dataset' + datasetCounter + '">' + datasetName + '</label>' +
+                    '</div>'
+                );
+                updateChart();
+            }
+            
+            // 勾選或取消勾選數據時更新圖表
+            $('#checkboxData input[type=checkbox]').change(updateChart);
+            // 勾選或取消勾選資料集時更新圖表
+            $('#checkboxDatasets').on('change', 'input[type=checkbox]', updateAverageChart);
+            // 圖表類型勾選事件
+            $('#radioChartType input[type=radio]').change(updateChart);
+            // 比較項目勾選事件
+            $('#radioComparison input[type=radio]').change(updateChart);
+            // 資料集按鈕事件
+            $('#addDatasetBtn').click(addToDataset);
+        });
+    </script>
+//直方圖
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const histogramButtonsContainer = document.getElementById('histogram-buttons');
+            const histogramChart = document.getElementById('histogramChart').getContext('2d');
+
+            // 創建 1 到 12 的單選按鈕
+            const radioContainer = document.createElement('div');
+            radioContainer.className = 'form-check';
+
+            for (let i = 1; i <= 12; i++) {
+                const input = document.createElement('input');
+                input.type = 'radio';
+                input.className = 'form-check-input';
+                input.name = 'histogramData';
+                input.id = `data${i}`;
+                input.value = i;
+
+                const label = document.createElement('label');
+                label.className = 'form-check-label';
+                label.htmlFor = `data${i}`;
+                label.textContent = `Data ${i}`;
+
+                input.addEventListener('change', function() {
+                    if (this.checked) {
+                        fetchHistogramData(this.value);
+                    }
+                });
+
+                radioContainer.appendChild(input);
+                radioContainer.appendChild(label);
+                radioContainer.appendChild(document.createElement('br')); // 斷行
+            }
+
+            histogramButtonsContainer.appendChild(radioContainer);
+
+            // 函數：讀取文本文件並生成直方圖
+            function fetchHistogramData(fileNumber) {
+                fetch(`hist${fileNumber}.txt`) // 調整為當前資料夾中的文件路徑
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        const distances = data.split('\n').map(line => parseFloat(line)).filter(value => !isNaN(value));
+                        console.log('Distances:', distances); // 用於調試
+                        drawHistogram(distances);
+                    })
+                    .catch(error => console.error('Error fetching histogram data:', error));
+            }
+
+            // 函數：繪製直方圖
+            function drawHistogram(data) {
+                if (window.histogramChartInstance) {
+                    window.histogramChartInstance.destroy();
+                }
+
+                // 計算每個距離範圍的數量
+                const binSize = 0.2;
+                const maxDistance = 3;
+                const binsCount = Math.ceil(maxDistance / binSize);
+                const counts = new Array(binsCount).fill(0);
+                
+                data.forEach(value => {
+                    if (value >= 0 && value <= maxDistance) {
+                        const binIndex = Math.floor(value / binSize);
+                        counts[binIndex]++;
+                    }
+                });
+
+                const labels = Array.from({ length: binsCount }, (_, i) => `${(i * binSize).toFixed(1)}m - ${(i * binSize + binSize).toFixed(1)}m`);
+
+                window.histogramChartInstance = new Chart(histogramChart, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Count',
+                            data: counts,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            x: {
+                                beginAtZero: false,
+                                title: {
+                                    display: true,
+                                    text: 'Distance (meters)'
+                                }
+                            },
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Count'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
