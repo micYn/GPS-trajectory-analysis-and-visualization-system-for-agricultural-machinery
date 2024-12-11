@@ -29,8 +29,8 @@
 .chart {
     border-radius: 10px;
     /* background-color: lightcoral; */
-    height: 30%;
-    /* width: 50%; */
+    height: 50%;
+    /* width: auto; */
     margin-top : 10px;
 }
 .card {
