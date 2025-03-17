@@ -935,3 +935,6 @@ initMapinModal1(200);   //進入modal後的地圖，500代表是以每500點為�
 initMapinModal2();
 // initMapinModal3();
 });
+
+
+
